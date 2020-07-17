@@ -12,7 +12,6 @@ class EventList extends React.Component{
              deleteEvent= {deleteEvent}
             />
 		))}
-			}
 			</Fragment>
 		)
 	}

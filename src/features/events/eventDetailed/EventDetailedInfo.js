@@ -1,5 +1,7 @@
 import React from 'react';
 import {Segment, Grid, Icon, Button} from 'semantic-ui-react';
+import {format , parseISO} from "date-fns"
+
 
 export default function EventDetailedInfo({event}) {
     return (
@@ -20,8 +22,12 @@ export default function EventDetailedInfo({event}) {
                     <Icon name="calendar" size="large" color="teal"/>
                 </Grid.Column>
                 <Grid.Column width={15}>
-                    <span>{event.date}</span>
-                </Grid.Column>
+                { event.date &&
+                <span>
+                  {format(parseISO(event.date), 'EEEE do LLLL')} at{' '} 
+                  {format(parseISO(event.date),'h:mm a ')} 
+                </span>}
+                </Grid.Column>}
             </Grid>
         </Segment>
         <Segment attached>

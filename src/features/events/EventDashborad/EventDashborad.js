@@ -1,13 +1,18 @@
 import React from "react"
 
 import EventList from "../eventlist/EventList"
+import EventActivity from "../EventActivity/EventActivity"
 import {Grid} from "semantic-ui-react"
 import {connect} from "react-redux"
 import {createEvent,deleteEvent,updateEvent} from "../eventActions"
+import LoadingComponent from "../../../app/layout/LoadingComponent"
+
 
 
 const mapState=(state) =>({
-    events:state.events
+    events:state.events,
+    loading : state.Async.loading
+    
 })
  
  const actions={
@@ -21,7 +26,8 @@ class EventDashborad extends React.Component{
    this.props.deleteEvent(id) 
  }
   render(){
-    const {events}= this.props
+    const {events ,loading}= this.props
+    if(loading) return <LoadingComponent />
     return(
       <Grid>
         <Grid.Column width={10}>
@@ -31,7 +37,7 @@ class EventDashborad extends React.Component{
            />
         </Grid.Column>
         <Grid.Column width={6}>
-         <h2>Activity Feed</h2>
+         <EventActivity />
         </Grid.Column>
       </Grid>
     )

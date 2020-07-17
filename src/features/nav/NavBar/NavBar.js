@@ -37,7 +37,9 @@ import {logout} from "../../auth/AuthAction"
                     Re-vents
                 </Menu.Item>
                 <Menu.Item as ={NavLink} exact to="/events" name='Events' />
-                <Menu.Item as ={NavLink} to="/people" name='People' />
+                {authenticated && (
+                  <>
+                   <Menu.Item as ={NavLink} to="/people" name='People' />
                 <Menu.Item as ={NavLink} to="/test" name='Test' />
                 <Menu.Item >
                     <Button 
@@ -47,6 +49,8 @@ import {logout} from "../../auth/AuthAction"
                      floated="right" 
                      />
                 </Menu.Item>
+                  </>
+                )}
                  {authenticated ? (<SignedInMenu signOut={this.handleSignOut} currentUser={auth.currentUser} />)
                  : (<SignedOutMenu signIn={this.handleSignIn} register={this.handleRegister} />) }
             </Container>
